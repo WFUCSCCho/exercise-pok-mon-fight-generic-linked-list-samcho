@@ -3,23 +3,23 @@
  * Authors:
  */
 
-public class LinkedList {
-    private static class Node {
-        Pokemon mon; // object in node
-        Node next; // next Node in linked list
+public class LinkedList <T extends Comparable <T>> {
+    private static class Node <T extends Comparable <T>> {
+        T mon; // object in node
+        Node<T> next; // next Node in linked list
 
         // default constructor
         public Node() {
-            mon = new Pokemon();
+            mon = null;
             next = null;
         }
         // constructor
-        public Node(Pokemon m, Node n) {
+        public Node(T m, Node<T> n) {
             mon = m;
             next = n;
         }
     }
-    private Node head; // first node in linked list
+    private Node<T> head; // first node in linked list
 
     // default constructor
     LinkedList() {
@@ -27,7 +27,7 @@ public class LinkedList {
     }
 
     public void print() {
-        Node runner = head; // start at the head
+        Node<T> runner = head; // start at the head
         while (runner.next != null) { // keep going until the end
             System.out.println(runner.mon); // print Pokémon
             runner = runner.next; // go to next node
@@ -35,31 +35,22 @@ public class LinkedList {
     }
 
     // find a node, return whether found or not
-    public boolean find(Pokemon mon) {
-    Node runner = head;
-    while (runner != null) {
-        if (runner.mon.equals(mon)){
-            return true;
+    public boolean find(T mon) {
+        Node<T> runner = head;
+        while (runner != null) {
+            if (runner.mon.equals(mon)){
+                return true;
+            }
+            else {
+                runner = runner.next;
+            }
         }
-        else {
-            runner = runner.next;
-        }
+        return false;
     }
-    return false;
-    /*
-    for (int i; i < ; i++) {
-        if () {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-     */
-}
+
     // Insert a node at the end of the list
-    public void insert(Pokemon mon) {
-        Node newNode = new Node();
+    public void insert(T mon) {
+        Node<T> newNode = new Node<T>();
         newNode.mon = mon;
 
         if (head == null) {
@@ -70,8 +61,8 @@ public class LinkedList {
             head = newNode;
         }
         else {
-            Node runner = head.next;
-            Node previous = head;
+            Node<T> runner = head.next;
+            Node<T> previous = head;
             while (runner != null && runner.mon.compareTo(mon) < 0) {
                 previous = runner;
                 runner = runner.next;
@@ -82,10 +73,9 @@ public class LinkedList {
     }
 
     // Delete a node at the beginning of the Linked List and return it
-    public Pokemon pop () {
-        // FINISH ME
+    public T pop () {
         if(head != null){
-             Pokemon poke = head.mon;
+             T poke = head.mon;
              head = head.next;
              return poke;
         }

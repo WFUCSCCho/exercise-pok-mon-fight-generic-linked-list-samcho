@@ -35,7 +35,7 @@ public class PokemonFight {
         inputFileNameScanner.nextLine();
 
         // Pokemon LinkedList (PokeDex)
-        LinkedList PokeDex = new LinkedList();
+        LinkedList<Pokemon> PokeDex = new LinkedList<Pokemon>();
 
         // Read in file and store data in Pokemon ArrayList
         while (inputFileNameScanner.hasNext()) {
